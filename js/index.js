@@ -1,13 +1,15 @@
 import { onValue, ref } from "firebase/database";
 import { db } from "./config";
 import { createProduct, deleteProduct, updateProduct } from "./services";
-import { llenarFormulario, mostrarDatosEnTabla, showHideAlert } from "./builds";
+import { llenarFormulario, showHideAlert } from "./builds";
 
 const tablaBody = document.getElementById("tabla");
 const contTable = document.getElementById("cont-table");
 const botonGuardarCambios = document.getElementById("boton-update");
 const botonGuardar = document.getElementById("boton-crear");
 const formulario = document.getElementById("formulario");
+const tituloUpdate = document.getElementById("titulo-update");
+const tituloCreate = document.getElementById("titulo-create");
 let selectedKey = null;
 
 const productoRef = ref(db, "Gaspata_Xavier");
@@ -29,12 +31,15 @@ onValue(productoRef, (snapshot) => {
                     <td>${producto.marca}</td>
                     <td>${producto.cantidad}</td>
                       <td>
-                          <button class="btn-modificar btn" onclick="seleccionarProducto('${productoSnap.key}')">Editar</button>
-                          <button class="btn-eliminar btn" onclick="eliminarLibro('${productoSnap.key}')">Borrar</button>
+                          <button class="btn-eliminar btn" onclick="eliminarProducto('${productoSnap.key}')"><i class="bi bi-trash3 text-danger"></i></button>
+                          <button class="btn-modificar btn" onclick="seleccionarProducto('${productoSnap.key}')"><i class="bi bi-pencil-square text-success"></i></button>
                       </td>
                   </tr>`;
       tablaBody.innerHTML += row;
     });
+  } else {
+    contTable.classList.remove("d-block");
+    contTable.classList.add("d-none");
   }
 });
 
@@ -91,6 +96,10 @@ window.seleccionarProducto = function (key) {
   botonGuardarCambios.classList.remove("d-none");
   botonGuardar.classList.add("d-none");
   botonGuardar.classList.remove("d-block");
+  tituloUpdate.classList.add("d-block");
+  tituloUpdate.classList.remove("d-none");
+  tituloCreate.classList.add("d-none");
+  tituloCreate.classList.remove("d-block");
 
   selectedKey = key;
 
@@ -146,18 +155,22 @@ const actualizarRegistro = () => {
     botonGuardarCambios.classList.remove("d-block");
     botonGuardar.classList.add("d-block");
     botonGuardar.classList.remove("d-none");
+    tituloUpdate.classList.add("d-none");
+    tituloUpdate.classList.remove("d-block");
+    tituloCreate.classList.add("d-block");
+    tituloCreate.classList.remove("d-none");
 
-    alert("Registro actualizado exitosamente");
+    alert("Producto actualizado correctamente");
     limpiarCampos();
     selectedKey = null;
   } else {
-    alert("Por favor, seleccione un libro para actualizar");
+    alert("Por favor, seleccione un producto");
   }
 };
 
-window.eliminarLibro = function (key) {
+window.eliminarProducto = function (key) {
   const isDeleted = confirm(
-    "¿Estás seguro de que quieres eliminar este libro?"
+    "¿Estás seguro de que quieres eliminar este producto?"
   );
   if (isDeleted) {
     const res = deleteProduct(key);
