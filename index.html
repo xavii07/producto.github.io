@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- BOOTSTRAP-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="
+https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/superhero/bootstrap.min.css
+"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <main>
+      <form id="formulario">
+        <h1 class="titulo">Registro de Producto</h1>
+        <div class="row-container">
+          <div class="container_input_label">
+            <label>Nombre: </label>
+            <input
+              placeholder="Monitor LG 24'"
+              type="text"
+              name="nombre"
+              pattern="[A-Za-z\s]+"
+              title="Ingrese solo letras"
+              id="nombre"
+              required
+              autocomplete="off"
+            />
+          </div>
+          <div class="container_input_label">
+            <label class="">Fecha de Ingreso: </label>
+            <input type="date" name="fechaIngreso" id="fechaIngreso" />
+          </div>
+        </div>
+
+        <div class="row-container">
+          <div class="container_input_label">
+            <label>Descripcion: </label>
+            <input
+              placeholder="Monitor de 24'..."
+              type="text"
+              name="descripcion"
+              pattern="[A-Za-z\s]+"
+              title="Ingrese solo letras"
+              id="descripcion"
+              required
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <div class="row-container">
+          <div class="container_input_label">
+            <label>Cantidad: </label>
+            <input
+              placeholder="25"
+              type="number"
+              min="1"
+              name="cantidad"
+              pattern="[0-9]+"
+              title="Ingrese solo numeros"
+              id="cantidad"
+              required
+              autocomplete="off"
+            />
+          </div>
+          <div class="container_input_label">
+            <label>Precio de venta: </label>
+            <input
+              placeholder="450"
+              type="number"
+              min="0"
+              name="precioVenta"
+              pattern="^\d+(\.\d{1,2})?$"
+              title="Ingrese solo numeros"
+              id="precioVenta"
+              step="any"
+              required
+              autocomplete="off"
+            />
+          </div>
+          <div class="container_input_label">
+            <label>Precio de compra: </label>
+            <input
+              placeholder="400"
+              type="number"
+              min="0"
+              id="precioCompra"
+              pattern="^\d+(\.\d{1,2})?$"
+              title="Ingrese solo numeros"
+              id="precioCompra"
+              step="any"
+              required
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div class="row-container">
+          <div class="container_input_label">
+            <label>Categoria: </label>
+            <input
+              placeholder="Monitor"
+              type="text"
+              name="categoria"
+              pattern="[A-Za-z\s]+"
+              title="Ingrese solo letras"
+              id="categoria"
+              required
+              autocomplete="off"
+            />
+          </div>
+          <div class="container_input_label">
+            <label>Marca: </label>
+            <input
+              placeholder="LG"
+              type="text"
+              name="marca"
+              pattern="[A-Za-z\s]+"
+              title="Ingrese solo letras"
+              id="marca"
+              required
+              autocomplete="off"
+            />
+          </div>
+        </div>
+        <div>
+          <button type="button" class="boton" id="boton-crear">
+            Guardar Producto
+          </button>
+          <button type="button" class="boton d-none" id="boton-update">
+            Actualizar Producto
+          </button>
+          <button
+            type="button"
+            class="btn btn-cancelar btn-warning w-100 d-none"
+            id="boton-cancelar"
+          >
+            Cancelar
+          </button>
+        </div>
+        <div class="alert alert-danger d-none" id="alert-error">
+          Todos los campos son obligatorios **
+        </div>
+
+        <div class="alert alert-danger d-none" id="alert-error-crear">
+          Hubo un problema al crear el producto
+        </div>
+
+        <div class="alert alert-success d-none" id="alert-success">
+          Producto agregado correctamente
+        </div>
+      </form>
+
+      <div class="cont-table d-none mt-4 mb-4" id="cont-table">
+        <h1 class="text-center mb-4 mt-4">Productos Registrados</h1>
+        <table class="table table-dark table-striped text-center align-middle">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Precio Venta</th>
+              <th>Categoria</th>
+              <th>Marca</th>
+              <th>Cantidad</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla"></tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+  <script src="/js/index.js" type="module"></script>
+</html>
