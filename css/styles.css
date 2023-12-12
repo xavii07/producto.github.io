@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Play", sans-serif !important;
+  background-color: #192229 !important;
+  color: aliceblue !important;
+}
+
+main {
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5rem 0;
+}
+
+form {
+  background-color: #202e37;
+  padding: 1.5rem 3rem;
+  border-radius: 0.2rem;
+  width: 90%;
+}
+
+.boton {
+  background-color: #35a9fd;
+  color: aliceblue;
+  padding: 1rem;
+  border: none;
+  font-weight: bolder;
+  font-size: 1rem;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  transition: background-color 0.2s ease-in;
+}
+
+.boton:hover {
+  cursor: pointer;
+  background-color: #0276ca;
+}
+
+.btn-cancelar {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  padding: 1rem !important;
+  border: none !important;
+  font-weight: bolder !important;
+  font-size: 1rem !important;
+  border-radius: 0 !important;
+}
+
+input {
+  background-color: #273b49;
+  height: 3rem;
+  border: none;
+  outline: none;
+  color: aliceblue;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+label {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.container_input_label {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.titulo {
+  text-align: center;
+}
+
+.row-container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 2rem;
+}
+
+table {
+  width: 90%;
+}
+
+@media screen and (min-width: 992px) {
+  form {
+    width: 60%;
+  }
+
+  .cont-table {
+    width: 60%;
+  }
+}
